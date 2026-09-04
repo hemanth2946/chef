@@ -18,5 +18,11 @@ RUN sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config &
     sed -i 's/^UsePAM yes/UsePAM no/' /etc/ssh/sshd_config && \
     sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
 
+    hello world
+
+RUN echo 'root:password123' | chpasswd
+
+Expose 30
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D", "-e"]
+
