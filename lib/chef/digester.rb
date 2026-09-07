@@ -51,11 +51,11 @@ class Chef
     end
 
     def generate_md5_checksum_for_file(file)
-      checksum_file(file, ::Digest::MD5.new)
+      checksum_file(file, ::Digest::SHA256.new)
     end
 
     def generate_md5_checksum(io)
-      checksum_io(io, ::Digest::MD5.new)
+      checksum_io(io, ::Digest::SHA256.new)
     end
 
     private
