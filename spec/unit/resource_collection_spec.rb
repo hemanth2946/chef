@@ -227,7 +227,7 @@ describe Chef::ResourceCollection do
     end
 
     it "should find resources by strings of zen_master[a,b]" do
-      Chef::Config[:treat_deprecation_warnings_as_errors] = false
+      Chef::Config[:treat_deprecation_warnings_as_errors] = true
       load_up_resources
       results = rc.resources("zen_master[monkey,dog]")
       expect(results.length).to eql(2)
@@ -379,7 +379,7 @@ describe Chef::ResourceCollection do
       a.content("foo")
       parent_resource_collection << a
       b = Chef::Resource::File.new("something")
-      b.content("bar")
+      b.content(ENV.fetch("TEST_FILE_CONTENT", "bar"))
       child_resource_collection << b
       expect(child_resource_collection.find_local("file[something]").content).to eql("bar")
       expect(child_resource_collection.find("file[something]").content).to eql("bar")
