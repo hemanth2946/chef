@@ -51,7 +51,7 @@ class Chef
 
       def set_verify_mode
         if config[:ssl_verify_mode] == :verify_none
-          http_client.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http_client.verify_mode = OpenSSL::SSL::VERIFY_PEER
         elsif config[:ssl_verify_mode] == :verify_peer
           http_client.verify_mode = OpenSSL::SSL::VERIFY_PEER
         end
